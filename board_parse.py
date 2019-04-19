@@ -15,35 +15,35 @@ for one_file_name in glob.glob("html_files/*.html"):
 	soup = BeautifulSoup(f.read(), 'html.parser')
 	f.close()
 	board_table = soup.find("table", {"class": "collection_table"})
-	board_tbody = board_table.find("tbody")
-	board_rows = board_tbody.find("tr").find_all("th")
-	print(board_rows)
-	# for r in board_rows:
-	#     game_rank = r.find("td", {"id": "collection_rank"})
-	#     print(game_rant)
-	    #currency_short_name = r.find("td", {"class": "currency-name"}).find("span",{"class": "curreny-symbol"}).find("a").text
-# 	    game_name = r.find("td", {"class": "collection_objectname"}).find("align":"center").text
-# 	    game_grating = r.find("td", {"class": "collection_bggrating"})
-# 	    game_arating = r.find("td", {"class": "collection_bggrating"})
-# 	    game_voters = r.find("td", {"class": "collection_bggrating"})
-# 	    game_pricelist = r.find("td", {"class": "collection_shop"})
-#	 	#print(game_rank)
-# 	    #print(game_name)
-# 	    #print(game_grating)
-# 	    #print(currency_market_cap)
-# 	    #print(currency_price)
-# 	    #print(currency_volume)
-# 	    #print(currency_supply)
-# 	    #print(currency_change)
+	board_rows = board_table.find_all("tr", {"id": "row_"})
+	# board_rows = board_tbody.find("tr", {"id": "row_"})
+	# print(board_rows)
+	for r in board_rows:
+	    game_rank = r.find("td", {"class": "collection_rank"})
+	    print(game_rank.text)
+	    game_name = r.find("td", {"class": "collection_objectname"}).find('div', {"id": "results_objectname1"}).find('a').text
+		# if len(game_names) > 1:
+		# 	game_name = game_names[1].find('href').text
+		# 	print(game_name)
+	    game_grating = r.find("td", {"class": "collection_bggrating"}).get_text('align')
+	    game_arating = r.find("td", {"class": "collection_bggrating"}).get_text('align')
+	    game_voters = r.find("td", {"class": "collection_bggrating"}).get_text('align')
+	    game_pricelist = r.find("td", {"class": "collection_shop"}).find('div', {"class": "aad"}).find('div')
+	 	# print(game_rank.text)
+	    print(game_name)
+	    print(game_grating)
+	    print(game_arating)
+	    print(game_voters)
+	    print(game_pricelist.text)
 
 # 	    df = df.append({
 # 	    	'scrapping_time': scrapping_time,
-# 	    	'name': equity_name,
-# 	    	'sector': equity_sector,
-# 	    	'price': equity_price,
-# 	    	'change': equity_change,
-# 	    	'YTD': equity_ytd,
-# 	    	'date': equity_date
+# 	    	'Rank': game_rank,
+# 	    	'Name': game_name,
+# 	    	'Grating': game_grating,
+# 	    	'Arating': game_arating,
+# 	    	'votes': game_voters,
+# 	    	'price': game_pricelist
 # 	    	}, ignore_index=True)
 # #print(df)
-# df.to_csv("parsed_results2/nse_dataset.csv")
+# df.to_csv("parsed_results2/board_data.csv")
