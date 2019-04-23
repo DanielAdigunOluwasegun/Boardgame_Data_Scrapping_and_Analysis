@@ -2,7 +2,11 @@ import os
 from bs4 import BeautifulSoup
 import glob
 import pandas as pd 
+import csv
+if not os.path.exists("parsed_results"):
+	os.mkdir("parsed_results")
 
+df = pd.DataFrame()
 
 for one_file_name in glob.glob("html_files/*.html"):
 	print("parsing: " + one_file_name)
@@ -16,16 +20,18 @@ for one_file_name in glob.glob("html_files/*.html"):
 		game_set = []
 		columns = board_rows[r].find_all("td", {"class": "collection_bggrating"})
 		for col in columns:
-			# game_set.append(col.get_text())
 			game_set.append(col.find(text=True).strip())
-		print(game_set)
+		print(game_set[0])
+		print(game_set[1])
+		print(game_set[2])
+		df = df.append({
+	    	'Grating': game_set[0],
+	    	'Arating': game_set[1],
+	    	'votes': game_set[2]
+	    	}, ignore_index=True)
+df.to_csv("parsed_results/boardgame_ratings_data.csv",index=False)
 
 
 
 
-		# game_grating = r.find("td", {"class": "collection_bggrating"}).get_text('align')
-		# game_arating = r.find("td", {"class": "collection_bggrating"}).get_text('align')
-		# game_voters = r.find("td", {"class": "collection_bggrating"}).get_text('align')[2]
-		# print(game_grating)
-		# print(game_arating)
-		# print(game_voters)
+
