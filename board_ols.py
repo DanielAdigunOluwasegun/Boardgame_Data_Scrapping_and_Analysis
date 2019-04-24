@@ -14,8 +14,9 @@ print(data.head())
 
 regression = linear_model.LinearRegression()
 
+result = regression.fit(data, target)
+print(result)
 
-regression.fit(data, target)
 X = [
 	[7.0,15367],
 	[7.7,50235],
@@ -24,3 +25,20 @@ X = [
 
 results = regression.predict(X)
 print(results)
+
+
+def getAccuracy(X, predictions):
+    correct = 0
+    for x in range(len(X)):
+        if X[x][-1] is predictions[x]:
+            correct += 1
+    return (correct/float(len(X))) * 100.0
+   
+X = [
+	[7.0,15367],
+	[7.7,50235],
+	[6.5,7842],
+]
+predictions = results
+accuracy = getAccuracy(X, predictions)
+print(accuracy)
