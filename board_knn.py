@@ -30,7 +30,6 @@ results = knn.predict(X)
 print(results)
 
 
-
 def getAccuracy(X, predictions):
     correct = 0
     for x in range(len(X)):
@@ -44,7 +43,3 @@ X = [
 	[6.5,7842],
 ]
 print(results)
-results = knn.predict(X)
-predictions = results
-accuracy = getAccuracy(X, predictions)
-print(accuracy)
