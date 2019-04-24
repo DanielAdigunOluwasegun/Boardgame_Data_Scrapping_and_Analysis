@@ -6,13 +6,17 @@ from sklearn import metrics
 
 
 
-dataset = pd.read_csv("parsed_results/boardgame_data.csv",header=None)
-# pd.to_numeric(dataset, errors = 'coerce')
-int(dataset)
-print(dataset.info())
-# print(dataset.head())
-# plt.scatter(dataset[2],dataset[3])
-# plt.savefig("scatter.png")
+dataset = pd.read_csv("parsed_results/boardgame_data.csv")
+# df = pd.read_csv("parsed_results/boardgame_data.csv", sep='\s+', engine='python').astype(int)
+# dt = pd.to_numeric(df)
+# dataset['1'].astype(str).astype(int)
+data = pd.to_numeric(dataset, errors='coerce')
+print(data.info())
+
+	
+print(dataset.head())
+plt.scatter(dataset[1],dataset[2])
+plt.savefig("scatter.png")
 
 
 # for i in range (4):
