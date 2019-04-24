@@ -11,4 +11,4 @@ A series of analysis were performed on the ddtaset testing different machine lea
 1. we started with the basic OLS linear regression with the file board_ols.py and predicted a range of values with this model
 
 2. We then used Kneighbors Classifier board_knn.py to analyse the data and predict the same range of values using exactly the same input.
-3. Then we run a pair of unsupervised learning models and compare the results and accuracy of each of the model on our data set, the models used are file board_decision.py and board_randomforest.py
+3. Then we run another pair of machine learning models and compare the results and accuracy of each of the model on our data set, the models used are file board_decision.py and board_randomforest.py
